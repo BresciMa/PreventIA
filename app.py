@@ -66,7 +66,7 @@ def encodar_imagem(caminho_imagem):
 
 def call_chatGPTPreventIa_GPT4o():
 
-    chave_api = ""
+    chave_api = st.secrets["chave_api"]
     modelo="gpt-3.5-turbo"   #"gpt-4o"   #"gpt-3.5-turbo"    #"gpt-4"
     temperatura=0.7
     max_tokens=150
