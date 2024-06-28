@@ -41,9 +41,11 @@ def escreve_chat():
                         st.write(st.session_state.conversa[i]['content'])
 
 def call_prompt():
+    
+    st.session_state.conversa.append({"role" : "user", "content" : prompt_user})    
+    
     if token_acesso:
         #contexto e historico
-        st.session_state.conversa.append({"role" : "user", "content" : prompt_user})
         
         if (token_acesso == "JYORXq1Uqo0M=" or "Y8m0ZgVH4YU7=") and modelo == "GPT-4o" :
             call_chatGPTPreventIa_GPT4o()
@@ -51,7 +53,7 @@ def call_prompt():
             call_api_Fusion_GPT4()
 
     else:
-        st.warning("Por favor, digite seu token de acesso")
+        st.session_state.conversa.append({"role" : "assistant", "content" : "Por favor, digite seu token de acesso"})
 
 # Função para carregar a persona a partir de um arquivo
 def carregar_persona(arquivo):
