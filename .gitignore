@@ -3,3 +3,6 @@ app3.py
 edsonfus.py
 keys.txt
 .streamlit
+__pycache__/
+*.py[cod]
+.pytest_cache/

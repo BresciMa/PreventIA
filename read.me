@@ -6,3 +6,25 @@ pip install streamlit
 
 streamlit run app.py
 
+## Backend V3
+
+A API FastAPI e os serviços modulares estão em `preventia/`. O contrato de
+RAG fixa `BAAI/bge-m3`, vetores normalizados de 1024 dimensões e distância
+cosseno. O acesso ao Qdrant ocorre somente pelo adapter de backend.
+
+Variáveis mínimas para uma instância Qdrant:
+
+```text
+PREVENTIA_QDRANT_URL=https://qdrant.example
+PREVENTIA_QDRANT_API_KEY=<secret-manager>
+PREVENTIA_EMBEDDING_MODEL_VERSION=<versao-do-artefato>
+```
+
+`PREVENTIA_COLLECTIONS_JSON` existe apenas para desenvolvimento local e
+carrega o catálogo autorizado em memória. Em produção, substituir esse
+adapter por PostgreSQL e injetar um provedor de identidade OIDC/OAuth2 em
+`create_app(..., user_provider=...)`. A API rejeita headers de identidade por
+padrão; o modo `allow_dev_identity=True` é exclusivo para desenvolvimento.
+
+Para validar os serviços sem iniciar servidor, execute `pytest` após instalar
+`requirements.txt`.
